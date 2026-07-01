@@ -16,7 +16,11 @@ public class UserService {
     }
 
     public UserResponse register(UserRequest userRequest) {
+<<<<<<< HEAD
         if (userRepository.existsByEmail(userRequest.getEmail())) {
+=======
+        if (userRepository.exitsByEmail(userRequest.getEmail())) {
+>>>>>>> cb27da3248d2de220fabba8c6cb4d55cac571b31
             User exituser  = userRepository.findByEmail(userRequest.getEmail());
             UserResponse userResponse1 = new UserResponse();
             userResponse1.setId(exituser.getId());
@@ -33,7 +37,10 @@ public class UserService {
         User newUser = new User();
         newUser.setEmail(userRequest.getEmail());
         newUser.setFirstname(userRequest.getFirstname());
+<<<<<<< HEAD
         newUser.setKeycloakId(userRequest.getKeycloakId());
+=======
+>>>>>>> cb27da3248d2de220fabba8c6cb4d55cac571b31
         newUser.setLastname(userRequest.getLastname());
         newUser.setPassword(userRequest.getPassword());
         User user = userRepository.save(newUser);
@@ -70,4 +77,8 @@ public class UserService {
         return userRepository.existsByKeycloakId(userId);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb27da3248d2de220fabba8c6cb4d55cac571b31
 }

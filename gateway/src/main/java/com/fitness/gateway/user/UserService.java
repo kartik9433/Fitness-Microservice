@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+<<<<<<< HEAD
 import reactor.core.publisher.Mono;
 
 @Service
@@ -48,4 +49,34 @@ public class UserService {
                     }});
     }
 
+=======
+@Service
+@RequiredArgsConstructor
+public class UserValidationService {
+
+    private final WebClient webClient;
+
+    public boolean validateUser(String userId) {
+        try {
+            return webClient.get()
+                    .uri("/user/{userId}/validate", userId)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+
+        } catch (WebClientResponseException e) {
+
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new RuntimeException("User not found: " + userId);
+
+            } else if (e.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
+                throw new RuntimeException("User Service is unavailable");
+
+            } else {
+                throw new RuntimeException(
+                        "Error while validating user: " + e.getMessage());
+            }
+        }
+    }
+>>>>>>> cb27da3248d2de220fabba8c6cb4d55cac571b31
 }
