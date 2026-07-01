@@ -1,0 +1,31 @@
+package com.fitness.gateway.user;
+
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class UserResponse {
+
+    private String id;
+
+    private String keycloakId;
+
+    private String email;
+
+    private String password;
+
+    private String firstname;
+
+    private String lastname;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+
+}
